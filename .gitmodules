@@ -1,0 +1,6 @@
+[submodule "libs/video_quality"]
+	path = libs/video_quality
+	url = git@github.com:aizvorski/video-quality.git
+[submodule "libs/PerceptualSimilarity"]
+	path = libs/PerceptualSimilarity
+	url = git@github.com:amjltc295/PerceptualSimilarity.git

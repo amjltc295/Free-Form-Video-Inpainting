@@ -1,0 +1,109 @@
+{
+    "name": "VideoInpaintingModel_baseline_partial_l1_mask_vgg_style_tv_1_6_0.01_120_0.1_SVOR",
+    "n_gpu": 2,
+
+    "arch": {
+        "type": "VideoInpaintingModel",
+        "args": {
+            "nc_in": 3,
+            "nc_out": 3,
+            "opts": {
+                "norm": "BN",
+                "nf": 64,
+                "bias": true,
+                "conv_type": "partial",
+                "conv_by": "2d",
+                "temporal_discriminator": false,
+                "spatial_discriminator": false
+            },
+            "d_s_args": {
+                "nf": 64,
+                "use_sigmoid": true,
+                "norm": "SN"
+            },
+            "d_t_args": {
+                "nf": 64,
+                "use_sigmoid": true,
+                "norm": "SN"
+            }
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args":{
+            "lr": 1e-4,
+            "weight_decay": 0,
+            "amsgrad": true
+        }
+    },
+    "losses": [
+        {
+            "type": "ReconLoss",
+            "weight": 1,
+            "nickname": "loss_recon",
+            "args": {"masked": false}
+        },
+        {
+            "type": "ReconLoss",
+            "weight": 6,
+            "nickname": "loss_masked_recon",
+            "args": {"masked": true}
+        },
+        {
+            "type": "VGGLoss",
+            "weight": 0.05,
+            "nickname": "loss_vgg",
+            "args": {}
+        },
+        {
+            "type": "StyleLoss",
+            "weight": 120,
+            "nickname": "loss_style",
+            "args": {
+                "original_channel_norm": false
+            }
+        },
+        {
+            "type": "EdgeLoss",
+            "weight": 0,
+            "nickname": "loss_edge",
+            "args": {}
+        },
+        {
+            "type": "TVLoss",
+            "weight": 0.1,
+            "nickname": "loss_tv",
+            "args": {}
+        }
+    ],
+    "gan_losses": {
+        "loss_gan_spatial_weight": 0,
+        "loss_gan_temporal_weight": 0
+    },
+    "metrics": [
+        "L2_loss"
+    ],
+    "lr_scheduler": {
+        "type":"StepLR",
+        "args":{
+            "step_size":1000,
+            "gamma":0.99
+        }
+    },
+    "trainer": {
+        "epochs": 1000,
+        "save_dir": "saved/",
+        "save_freq": 5,
+        "verbosity": 2,
+        "monitor": "val_loss",
+        "monitor_mode": "min",
+        "mask_only": true,
+        "pretrained_load_strict": false
+    },
+    "visualization":{
+        "log_step": 40,
+        "test_log_step": 400,
+        "tensorboardX": true,
+        "log_dir": "saved/runs"
+    }
+}

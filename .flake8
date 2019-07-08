@@ -1,0 +1,10 @@
+[flake8]
+ignore = F403, W503
+exclude = 
+    .git,
+    *migrations*,
+    *logs*,
+    libs,
+    dataset,
+    VOS*
+max-line-length = 120

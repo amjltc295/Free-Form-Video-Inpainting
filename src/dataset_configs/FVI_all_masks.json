@@ -1,0 +1,71 @@
+{
+    "name": "VOR_allMasks",
+    "data_loader": {
+        "type": "MaskedFrameDataLoader",
+        "args":{
+            "root_videos_dir": "../dataset/FVI/Train/JPEGImages/",
+            "root_masks_dir": "../dataset/FVI/Train/random_masks/",
+            "root_outputs_dir": "",
+            "dataset_args": {
+                "type": "video",
+                "w": 320,
+                "h": 180,
+                "sample_length": 7,
+                "random_sample": true,
+                "random_sample_mask": true,
+                "mask_type": "random",
+                "do_augment": true
+            },
+            "batch_size": 5,
+            "shuffle": true,
+            "validation_split": 0.0,
+            "num_workers": 4
+        }
+    },
+    "test_data_loader": [
+        {
+            "type": "MaskedFrameDataLoader",
+            "args":{
+                "name": "test_object_35",
+                "root_videos_dir": "../dataset/FVI/Test/JPEGImages/",
+                "root_masks_dir": "../dataset/FVI/Test/random_masks/object_like_middle/35",
+                "root_outputs_dir": "../VOS_resized2",
+                "dataset_args": {
+                    "type": "video",
+                    "w": 320,
+                    "h": 180,
+                    "sample_length": 15,
+                    "random_sample": false,
+                    "random_sample_mask": false,
+                    "mask_type": "from_start"
+                },
+                "batch_size": 1,
+                "shuffle": false,
+                "validation_split": 0.0,
+                "num_workers": 4
+            }
+        },
+        {
+            "type": "MaskedFrameDataLoader",
+            "args":{
+                "name": "test_curve_like_45",
+                "root_videos_dir": "../dataset/FVI/Test/JPEGImages/",
+                "root_masks_dir": "../dataset/FVI/Test/random_masks/rand_curve/45",
+                "root_outputs_dir": "../VOS_resized2",
+                "dataset_args": {
+                    "type": "video",
+                    "w": 320,
+                    "h": 180,
+                    "sample_length": 15,
+                    "random_sample": false,
+                    "random_sample_mask": false,
+                    "mask_type": "from_start"
+                },
+                "batch_size": 1,
+                "shuffle": false,
+                "validation_split": 0.0,
+                "num_workers": 4
+            }
+        }
+    ]
+}

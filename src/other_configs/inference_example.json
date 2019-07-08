@@ -1,0 +1,63 @@
+{
+    "name": "inference_example",
+    "trainer": {
+        "epochs": 1000,
+        "save_dir": "saved/",
+        "save_freq": 5,
+        "verbosity": 2,
+        "monitor": "test0_p_dist",
+        "monitor_mode": "min",
+        "mask_only": true,
+        "pretrained_load_strict": false,
+        "evaluate_score": false
+    },
+    "inference_only": true,
+    "test_data_loader": [
+        {
+            "type": "MaskedFrameDataLoader",
+            "args":{
+                "name": "test_object_like",
+                "root_videos_dir": "../dataset/examples/1/JPEGImages/",
+                "root_masks_dir": "../dataset/examples/1/random_masks/",
+                "root_outputs_dir": "../VOS_resized2",
+                "dataset_args": {
+                    "type": "video",
+                    "w": 320,
+                    "h": 180,
+                    "sample_length": 15,
+                    "random_sample": false,
+                    "random_sample_mask": false,
+                    "mask_type": "random",
+                    "mask_dilation": 0
+                },
+                "batch_size": 1,
+                "shuffle": false,
+                "validation_split": 0.0,
+                "num_workers": 4
+            }
+        },
+        {
+            "type": "MaskedFrameDataLoader",
+            "args":{
+                "name": "test_object_removal",
+                "root_videos_dir": "../dataset/examples/2/JPEGImages/",
+                "root_masks_dir": "../dataset/examples/2/object_masks/",
+                "root_outputs_dir": "../VOS_resized2",
+                "dataset_args": {
+                    "type": "video",
+                    "w": 320,
+                    "h": 180,
+                    "sample_length": 15,
+                    "random_sample": false,
+                    "random_sample_mask": false,
+                    "mask_type": "fg",
+                    "mask_dilation": 5
+                },
+                "batch_size": 1,
+                "shuffle": false,
+                "validation_split": 0.0,
+                "num_workers": 4
+            }
+        }
+    ]
+}

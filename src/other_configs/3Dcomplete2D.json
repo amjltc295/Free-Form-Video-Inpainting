@@ -1,0 +1,68 @@
+{
+    "name": "3DComplete2DModel",
+    "n_gpu": 1,
+
+    "arch": {
+        "type": "CompletionNet",
+        "args": {
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args":{
+            "lr": 1e-4,
+            "weight_decay": 0,
+            "amsgrad": true
+        }
+    },
+    "losses": [
+        {
+            "type": "ImcompleteVideoReconLoss",
+            "weight": 1,
+            "nickname": "L1_imcomplete_video_masked_recon",
+            "args": {}
+        },
+        {
+            "type": "CompleteFramesReconLoss",
+            "weight": 1,
+            "nickname": "L1_masked_recon",
+            "args": {}
+        },
+        {
+            "type": "EdgeLoss",
+            "weight": 0,
+            "nickname": "loss_edge",
+            "args": {}
+        }
+    ],
+    "gan_losses": {
+        "loss_gan_spatial_weight": 0,
+        "loss_gan_temporal_weight": 0
+    },
+    "metrics": [
+        "L2_loss"
+    ],
+    "lr_scheduler": {
+        "type":"StepLR",
+        "args":{
+            "step_size": 10,
+            "gamma": 0.95
+        }
+    },
+    "trainer": {
+        "epochs": 1000,
+        "save_dir": "saved/",
+        "save_freq": 5,
+        "verbosity": 2,
+        "monitor": "val_loss",
+        "monitor_mode": "min",
+        "mask_only": true,
+        "pretrained_load_strict": true
+    },
+    "visualization":{
+        "log_step": 20,
+        "test_log_step": 400,
+        "tensorboardX": true,
+        "log_dir": "saved/runs"
+    }
+}

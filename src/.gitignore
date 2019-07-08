@@ -1,0 +1,2 @@
+# Ignore ipython notebook files because it has large amount of output
+*.ipynb
