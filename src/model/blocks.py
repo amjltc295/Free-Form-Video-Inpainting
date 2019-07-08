@@ -161,12 +161,23 @@ class NN3Dby2DTSM(NN3Dby2D):
             )
             self.__class__.__name__ = "Conv3dBy2DTSM"
 
+            from model.tsm_utils import LearnableTSM
+            import global_variables
+            LGTSM_kargs = global_variables.global_config.get('LearnableTSM_kargs', {})
+            self.learnableTSM = LearnableTSM(**LGTSM_kargs)
+
         def forward(self, xs):
             # identity = xs
             B, C, L, H, W = xs.shape
             # Unbind the video data to a tuple of frames
-            from model.tsm_utils import tsm
-            xs_tsm = tsm(xs.transpose(1, 2), L, 'zero').contiguous()
+
+            # Fixed temporal shift
+            # from model.tsm_utils import tsm
+            # xs_tsm = tsm(xs.transpose(1, 2), L, 'zero').contiguous()
+
+            # Learnable temporal shift (via 3x1x1 conv)
+            xs_tsm = self.learnableTSM(xs).transpose(1, 2).contiguous()
+
             out = self.layer(xs_tsm.view(B * L, C, H, W))
             _, C_, H_, W_ = out.shape
             return out.view(B, L, C_, H_, W_).transpose(1, 2)

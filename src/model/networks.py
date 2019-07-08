@@ -124,10 +124,16 @@ class SNTemporalPatchGANDiscriminator(BaseModule):
         ######################
         # Convolution layers #
         ######################
+        import global_variables
+        if global_variables.global_config.get('skip_conv1_TSM', False):
+            first_conv_by = '2d' if conv_by == '2dtsm' else conv_by
+        else:
+            first_conv_by = conv_by
         self.conv1 = self.ConvBlock(
             nc_in, nf * 1, kernel_size=(3, 5, 5), stride=(1, 2, 2),
-            padding=1, bias=use_bias, norm=norm, conv_by=conv_by
+            padding=1, bias=use_bias, norm=norm, conv_by=first_conv_by
         )
+
         self.conv2 = self.ConvBlock(
             nf * 1, nf * 2, kernel_size=(3, 5, 5), stride=(1, 2, 2),
             padding=(1, 2, 2), bias=use_bias, norm=norm, conv_by=conv_by

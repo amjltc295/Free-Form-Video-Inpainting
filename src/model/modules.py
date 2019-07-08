@@ -30,9 +30,15 @@ class BaseModule(nn.Module):
 class DownSampleModule(BaseModule):
     def __init__(self, nc_in, nf, use_bias, norm, conv_by, conv_type):
         super().__init__(conv_type)
+        import global_variables
+        if global_variables.global_config.get('skip_conv1_TSM', False):
+            first_conv_by = '2d' if conv_by == '2dtsm' else conv_by
+        else:
+            first_conv_by = conv_by
+
         self.conv1 = self.ConvBlock(
             nc_in, nf * 1, kernel_size=(3, 5, 5), stride=1,
-            padding=1, bias=use_bias, norm=norm, conv_by=conv_by)
+            padding=1, bias=use_bias, norm=norm, conv_by=first_conv_by)
 
         # Downsample 1
         self.conv2 = self.ConvBlock(

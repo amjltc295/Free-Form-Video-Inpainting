@@ -14,6 +14,7 @@ from utils.logger import Logger
 from utils.util import make_dirs
 
 from utils.logging_config import logger
+import global_variables
 
 
 def get_instance(module, name, config, *args):
@@ -162,5 +163,7 @@ if __name__ == '__main__':
     if args.dataset_config is not None:
         dataset_config = json.load(open(args.dataset_config))
         config = override_data_setting(config, dataset_config)
+
+    global_variables.global_config = config.get('global_config', {})
 
     main(config, args.resume, args.output_root_dir, args.pretrained_path)

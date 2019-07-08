@@ -196,5 +196,14 @@
                 "num_workers": 4
             }
         }
-    ]
+    ],
+    "global_config": {
+        "LearnableTSM_kargs": {
+            "shift_ratio": 0.5,
+            "shift_groups": 2,
+            "shift_width": 3,
+            "fixed": false
+        },
+        "skip_conv1_TSM": false
+    }
 }
