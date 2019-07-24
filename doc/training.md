@@ -3,7 +3,7 @@ Download the one you need and extract them in dataset/
 - [FVI](https://drive.google.com/open?id=1leqcOfiFqu16e1T7V_68PGlOEugyuyDM) note that YouTube-Bounding-Boxes dataset is too large for google drive, so it only contains videos from YouTube-VOS.
 If you want to include videos from YouTube-Bounding-Boxes dataset, please manually download it from [here](https://github.com/mbuckler/youtube-bb)
 and filter out those with resolution lower than 640x480.
-- [FaceForensics](https://drive.google.com/open?id=1leqcOfiFqu16e1T7V_68PGlOEugyuyDM)
+- [FaceForensics](https://drive.google.com/open?id=18YXW_4Jy2CTZFTdfqdLrYfmSGm4YcDKL)
 
 **Note: the input frames and masks are matched by python sorting order.**
 
