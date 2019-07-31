@@ -92,3 +92,7 @@ Please cite our papers if you use this repo in your research:
   year={2019}
 }
 ```
+## Acknowledgement
+This work was supported in part by the Ministry of Science and Technology, Taiwan, under
+Grant MOST 108-2634-F-002-004. We also benefit from the NVIDIA grants and the DGX-1
+AI Supercomputer. We are grateful to the National Center for High-performance Computing.
