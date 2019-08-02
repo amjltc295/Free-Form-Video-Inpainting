@@ -6,6 +6,12 @@ This repository also includes the implementation of some baselines and the Free-
 
 ![teaser](doc/teaser.png)
 
+<img src='./doc/gif_teaser3.gif'>
+
+<img src='./doc/gif_teaser.gif'>
+
+<img src='./doc/gif_teaser2.gif'>
+
 See YouTube [video demo](https://www.youtube.com/watch?v=87Vh1HDBjD0&list=PLPoVtv-xp_dL5uckIzz1PKwNjg1yI0I94&index=32&t=0s) or full resolution videos on [Google Drive](https://drive.google.com/open?id=1sT_ov_lLhQlXE2PnBKCUGOTNz5f_p9G7)
 
 ## Introduction
