@@ -2,7 +2,7 @@
 
 Official Pytorch implementation of "Learnable Gated Temporal Shift Module for Deep Video Inpainting. Chang et al. BMVC 2019." [arXiv](https://arxiv.org/abs/1907.01131)
 
-This repository also includes the implementation of some baselines and the Free-form Video Inpainting (FVI) dataset in "Free-form Video Inpainting with 3D Gated Convolution and Temporal PatchGAN. Chang et al. arXiv 2019." [arXiv](https://arxiv.org/abs/1904.10247)
+This repository also includes the implementation of some baselines and the Free-form Video Inpainting (FVI) dataset in "Free-form Video Inpainting with 3D Gated Convolution and Temporal PatchGAN. Chang et al. ICCV 2019." [arXiv](https://arxiv.org/abs/1904.10247)
 
 ![teaser](doc/teaser.png)
 
@@ -10,7 +10,7 @@ See YouTube [video demo](https://www.youtube.com/watch?v=87Vh1HDBjD0&list=PLPoVt
 
 ## Introduction
 
-In "Free-form Video Inpainting with 3D Gated Convolution and Temporal PatchGAN. Chang et al. arXiv 2019.", we proposed 3D gated convolutions, Temporal PatchGAN and mask video generation algorithm to deal with free-form video inpainting in an end-to-end way. It is the first deep method for free-form video inpainting and achieves state-of-the-art performance both quantitatively and qualitatively. However, there are too many parameters for 3D gated convolutions and it takes long to train and inference.
+In "Free-form Video Inpainting with 3D Gated Convolution and Temporal PatchGAN. Chang et al. ICCV 2019.", we proposed 3D gated convolutions, Temporal PatchGAN and mask video generation algorithm to deal with free-form video inpainting in an end-to-end way. It is the first deep method for free-form video inpainting and achieves state-of-the-art performance both quantitatively and qualitatively. However, there are too many parameters for 3D gated convolutions and it takes long to train and inference.
 
 Therefore, in "Learnable Gated Temporal Shift Module for Deep Video Inpainting. Chang et al. BMVC 2019.", we proposed a new LGTSM based on temporal shift module (TSM) for action recognition to reduce model parameters and training time to about 33%. The performance is almost the same as our previous work.
 
@@ -82,7 +82,7 @@ Please cite our papers if you use this repo in your research:
 @article{chang2019free,
   title={Free-form Video Inpainting with 3D Gated Convolution and Temporal PatchGAN},
   author={Chang, Ya-Liang and Liu, Zhe Yu and Lee, Kuan-Ying and Hsu, Winston},
-  journal={arXiv preprint arXiv:1904.10247},
+  journal={In Proceedings of the International Conference on Computer Vision (ICCV)},
   year={2019}
 }
 @article{chang2019learnable,
