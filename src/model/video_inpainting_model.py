@@ -39,6 +39,7 @@ class VideoInpaintingModel(BaseModel):
         self.conv_type = opts['conv_type'] if 'conv_type' in opts else 'gated'
 
         self.use_refine = opts['use_refine'] if 'use_refine' in opts else False
+        use_skip_connection = opts.get('use_skip_connection', False)
 
         self.opts = opts
 
@@ -47,7 +48,7 @@ class VideoInpaintingModel(BaseModel):
         ######################
         self.generator = Generator(
             nc_in, nc_out, nf, use_bias, norm, self.conv_by, self.conv_type,
-            use_refine=self.use_refine)
+            use_refine=self.use_refine, use_skip_connection=use_skip_connection)
 
         #################
         # Discriminator #

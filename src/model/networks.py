@@ -11,13 +11,13 @@ from model.modules import UpSampleModule, DownSampleModule, AttentionDownSampleM
 
 class CoarseNet(nn.Module):
 
-    def __init__(self, nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type):
+    def __init__(self, nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type, use_skip_connection: bool = False):
         super().__init__()
         self.conv_type = conv_type
         self.downsample_module = DownSampleModule(
             nc_in, nf, use_bias, norm, conv_by, conv_type)
         self.upsample_module = UpSampleModule(
-            nf * 4, nc_out, nf, use_bias, norm, conv_by, conv_type)
+            nf * 4, nc_out, nf, use_bias, norm, conv_by, conv_type, use_skip_connection)
 
     def preprocess(self, masked_imgs, masks, guidances):
         # B, L, C, H, W = masked.shape
@@ -59,10 +59,10 @@ class CoarseNet(nn.Module):
 
 
 class RefineNet(CoarseNet):
-    def __init__(self, nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type):
-        super().__init__(nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type)
+    def __init__(self, nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type, use_skip_connection: bool = False):
+        super().__init__(nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type, use_skip_connection)
         self.upsample_module = UpSampleModule(
-            nf * 16, nc_out, nf, use_bias, norm, conv_by, conv_type)
+            nf * 16, nc_out, nf, use_bias, norm, conv_by, conv_type, use_skip_connection)
         self.attention_downsample_module = AttentionDownSampleModule(
             nc_in, nf, use_bias, norm, conv_by, conv_type)
 
@@ -83,16 +83,17 @@ class RefineNet(CoarseNet):
 
 class Generator(nn.Module):
     def __init__(
-        self, nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type, use_refine=False
+        self, nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type, use_refine=False,
+        use_skip_connection: bool = False,
     ):
         super().__init__()
         self.coarse_net = CoarseNet(
-            nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type
+            nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type, use_skip_connection
         )
         self.use_refine = use_refine
         if self.use_refine:
             self.refine_net = RefineNet(
-                nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type
+                nc_in, nc_out, nf, use_bias, norm, conv_by, conv_type, use_skip_connection
             )
 
     def forward(self, masked_imgs, masks, guidances=None):
