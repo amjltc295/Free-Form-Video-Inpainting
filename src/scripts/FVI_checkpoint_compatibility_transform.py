@@ -16,8 +16,9 @@ def parse_args():
         due to some unpickling issues of torch.load()
 
         This script is to modify a checkpoint saved in our previous "FVI with Gated Conv" repository.
-        1. Add a "use_skip_connection=True" tag in the "arch/args/opts" entry in the config json.
-        2. Replace names of nn modules that has been changed during the LGTSM development.
+        What it will do:
+            1. Add a "use_skip_connection=True" tag in the "arch/args/opts" entry in the config json.
+            2. Replace names of nn modules that has been changed during the LGTSM development.
         """
     )
     parser.add_argument('--src', type=str, required=True)
