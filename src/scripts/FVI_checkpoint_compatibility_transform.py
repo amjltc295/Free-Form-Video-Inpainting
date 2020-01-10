@@ -1,7 +1,3 @@
-# import sys
-# import os.path as op
-# sys.path.append(op.join(op.pardir, __file__))  # noqa
-
 import re
 import argparse
 from collections import OrderedDict
@@ -29,7 +25,6 @@ def parse_args():
 
 def rename_conv_to_featureConv(checkpoint):
     state_dict = checkpoint['state_dict']
-    # modified_keys = [k for k, v in state_dict.keys() if 'temporal_discriminator' in k and '.conv.' in k]
     new_state_dict = OrderedDict([
         (k.replace('.conv.', '.featureConv.'), v)
         if 'temporal_discriminator' in k and '.conv.' in k else (k, v)
@@ -47,11 +42,14 @@ def rename_conv_to_featureConv(checkpoint):
 
 def main():
     args = parse_args()
-    breakpoint()
+    print(f'\nLoading the old checkpoint from {args.src}')
     checkpoint = torch.load(args.src)
+    print('\nRenaming state_dict keys and adding the skip connection tag')
     new_checkpoint = rename_conv_to_featureConv(checkpoint)
     new_checkpoint['config']['arch']['args']['opts']['use_skip_connection'] = True
+    print(f'\nSaving the modified checkpoint into {args.dst}')
     torch.save(new_checkpoint, args.dst)
+    print('\nDone')
 
 
 if __name__ == '__main__':
