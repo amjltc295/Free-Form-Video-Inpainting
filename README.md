@@ -44,7 +44,7 @@ Please see [training](doc/training.md)
 1. Download corresponding pretrained weights from [Google Drive](https://drive.google.com/open?id=1uva9yI8yYKivqi4pWcyZLcCdIt1k-LRY)
     * The weights for the ICCV 2019 work
         * The one trained on FVI dataset is under `FFVI_3DGatedConv+TPGAN_trained_on_FVI_dataset` as well as its training config.
-    * The weights for the BMVC 2019 work (LGTSM):
+    * The weights for the BMVC 2019 work (LGTSM)
         * The one trained on FVI dataset is named as `v0.2.3_GatedTSM_inplace_noskip_b2_back_L1_vgg_style_TSMSNTPD128_1_1_10_1_VOR_allMasks_load135_e135_pdist0.1256`
         * For the one trained on FaceForensics, please refer to `Readme`
 
