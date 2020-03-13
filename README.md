@@ -25,7 +25,7 @@ Therefore, in "Learnable Gated Temporal Shift Module for Deep Video Inpainting. 
 ![block](doc/block_stacking.png)
 
 
-This repository contains source code for both works. Some pretrained weights for the GTSM one are given, while the LGTSM code could be found in the LGTSM branch. The pretrained weights of the 3DGated model is not available now due to some compatibility issues. The implementation of the baseline CombCN is also provided.
+This repository contains source code for both works. Some pretrained weights for the GTSM one are given, while the LGTSM code could be found in the LGTSM branch. The implementation of the baseline CombCN is also provided.
 
 ![compare](doc/fig_compare.png)
 ## Environment Setup
@@ -42,6 +42,12 @@ Please see [training](doc/training.md)
 
 ## Testing
 1. Download corresponding pretrained weights from [Google Drive](https://drive.google.com/open?id=1uva9yI8yYKivqi4pWcyZLcCdIt1k-LRY)
+    * The weights for the ICCV 2019 work
+        * The one trained on FVI dataset is under `FFVI_3DGatedConv+TPGAN_trained_on_FVI_dataset` as well as its training config.
+    * The weights for the BMVC 2019 work (LGTSM)
+        * The one trained on FVI dataset is named as `v0.2.3_GatedTSM_inplace_noskip_b2_back_L1_vgg_style_TSMSNTPD128_1_1_10_1_VOR_allMasks_load135_e135_pdist0.1256`
+        * For the one trained on FaceForensics, please refer to `Readme`
+
 2. Update parameters in `src/other_configs/inference_example.json`:
     * If you want to test on other data, set `root_masks_dir` for testing masks and `root_videos_dir` for testing frames.
     * If you want to turn on evaluation, set `evaluate_score` to `true`.

@@ -209,7 +209,7 @@ class CompleteFramesReconLoss(nn.Module):
 
 # From https://github.com/phoenix104104/fast_blind_video_consistency
 class TemporalWarpingLoss(nn.Module):
-    def __init__(self, flownet_checkpoint_path, alpha=50):
+    def __init__(self, flownet_checkpoint_path=None, alpha=50):
         super().__init__()
         self.loss_fn = L1LossMaskedMean()
         self.alpha = alpha
