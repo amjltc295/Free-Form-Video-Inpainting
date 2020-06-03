@@ -216,7 +216,7 @@ class BaseTrainer:
                 for k in current_state.keys()
                 if k not in pretrained_state.keys()
             ])
-            self.logger.info(f"Allowing lack of submodules for pretrained model.")
+            self.logger.info("Allowing lack of submodules for pretrained model.")
             self.logger.info(f"Submodule(s) not in pretrained model but in current model: {lack_modules}")
             redundant_modules = set([
                 k.split('.')[0]

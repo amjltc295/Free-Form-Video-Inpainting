@@ -370,8 +370,8 @@ class Trainer(BaseTrainer):
                     self.writer.add_scalar(f'loss_d_{d}', loss_d.item())
 
             self.writer.add_scalar('loss_total', loss_total.item())
-            self.writer.add_scalar(f'loss_gan_s', loss_gan_s.item())
-            self.writer.add_scalar(f'loss_gan_t', loss_gan_t.item())
+            self.writer.add_scalar('loss_gan_s', loss_gan_s.item())
+            self.writer.add_scalar('loss_gan_t', loss_gan_t.item())
 
             with torch.no_grad():
                 total_loss += loss_total.item()

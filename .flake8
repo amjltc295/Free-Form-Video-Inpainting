@@ -1,5 +1,5 @@
 [flake8]
-ignore = F403, W503
+ignore = F403, W503, E402
 exclude = 
     .git,
     *migrations*,

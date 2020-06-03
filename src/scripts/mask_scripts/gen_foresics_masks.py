@@ -54,7 +54,7 @@ def get_random_mask(img_size=[128, 128], r=[0.375, 0.5]):
 
 
 def gen_masks(in_direc, out_direc, args):
-    assert in_direc != out_direc, f'input and output directory should not be the same'
+    assert in_direc != out_direc, 'input and output directory should not be the same'
 
     video_dirs = get_everything_under(in_direc)
     assert all([os.path.isdir(d) for d in video_dirs])

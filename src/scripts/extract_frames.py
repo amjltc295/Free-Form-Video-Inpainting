@@ -76,7 +76,7 @@ def main(args):
     def signal_handler(signum, frame):
         manager.filepaths = []
         logger.error(
-            f"Got ctrl+c, set manager filepaths = [], please wait until all workers are done"
+            "Got ctrl+c, set manager filepaths = [], please wait until all workers are done"
         )
 
     signal.signal(signal.SIGINT, signal_handler)
