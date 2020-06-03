@@ -31,7 +31,7 @@ bash scripts/run_vcs_baseline.sh object_like /tmp2/yaliangchang/Temporally-Coher
 
 ## An example to evaluate distance between output and ground truth videos
 ```
-python evaluate.py -rgd ../dataset/test_20181109/JPEGImages -rmd ../dataset/random_masks_vl20_ns5_object_like_test/ -rrd saved/VideoInpaintingModel_v0.3.0_l1_m+a_mvgg_style_1_6_0.05_120_0_0_all_mask/0102_214744/test_outputs -mask
+python evaluate.py -rgd ../dataset/test_20181109/JPEGImages -rmd ../dataset/random_masks_vl20_ns5_object_like_test/ -rrd saved/VideoInpaintingModel_v0.3.0_l1_m+a_mvgg_style_1_6_0.05_120_0_0_all_mask/0102_214744/test_outputs
 
 ```
 
