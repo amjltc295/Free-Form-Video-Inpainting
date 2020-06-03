@@ -159,7 +159,7 @@ def copy_masks_without_boarder(root_dir, args):
         return Image.fromarray(pix).convert('1')
 
     wo_boarder_dir = root_dir + '_noBoarder'
-    logger.info(f'Copying all masks')
+    logger.info('Copying all masks')
     shutil.copytree(root_dir, wo_boarder_dir)
 
     for i, filename in enumerate(get_everything_under(wo_boarder_dir)):

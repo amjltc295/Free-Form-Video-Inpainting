@@ -45,7 +45,7 @@ class VideoCN(nn.Module):
             dim_x = x.shape[i]
             dim_y = y.shape[i]
             if dim_x != dim_y:
-                assert dim_x == dim_y + 1, (f'Only deal with the odd width inverse case of deconv. ',
+                assert dim_x == dim_y + 1, ('Only deal with the odd width inverse case of deconv. ',
                                             f'Got dim_x: {dim_x}, dim_y: {dim_y}')
                 output_x = output_x.narrow(i, 0, dim_y)
         return output_x

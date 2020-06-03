@@ -72,9 +72,9 @@ def connect_landmarks(image_shape, landmarks, color=None, alpha=0.75):
         (j, k) = FACIAL_LANDMARKS_IDXS[name]
         pts = landmarks[j:k]
 
-        for l in range(1, len(pts)):
-            ptA = tuple(pts[l - 1])
-            ptB = tuple(pts[l])
+        for x in range(1, len(pts)):
+            ptA = tuple(pts[x - 1])
+            ptB = tuple(pts[x])
             cv2.line(landmarks_contour, ptA, ptB, color, 2)
 
     # apply the transparent landmarks_contour
