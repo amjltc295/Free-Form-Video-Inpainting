@@ -41,7 +41,8 @@ def init_i3d_model():
     i3d_model_weight = '../libs/model_weights/i3d_rgb_imagenet.pt'
     if not os.path.exists(i3d_model_weight):
         make_dirs(os.path.dirname(i3d_model_weight))
-        urllib.request.urlretrieve('http://www.cmlab.csie.ntu.edu.tw/~zhe2325138/i3d_rgb_imagenet.pt', i3d_model_weight)
+        urllib.request.urlretrieve('https://github.com/piergiaj/pytorch-i3d/'
+                                   'raw/master/models/rgb_imagenet.pt', i3d_model_weight)
     i3d_model = InceptionI3d(400, in_channels=3, final_endpoint='Logits')
     i3d_model.load_state_dict(torch.load(i3d_model_weight))
     i3d_model.to(torch.device('cuda:0'))
