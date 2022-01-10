@@ -1,0 +1,200 @@
+{
+    "name": "C2C_model",
+    "n_gpu": 1,
+    "arch": {
+        "type": "VideoInpaintingModel",
+        "args": {
+            "nc_in": 5,
+            "nc_out": 3,
+            "opts": {
+                "norm": "SN",
+                "nf": 64,
+                "bias": true,
+                "conv_type": "gated",
+                "conv_by": "2dtsm",
+                "temporal_discriminator": true,
+                "spatial_discriminator": false
+            },
+            "d_s_args": {
+                "nf": 64,
+                "use_sigmoid": true,
+                "norm": "SN"
+            },
+            "d_t_args": {
+                "nf": 128,
+                "use_sigmoid": true,
+                "norm": "SN",
+                "conv_type": "vanilla",
+                "conv_by": "2dtsm"
+            }
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args": {
+            "lr": 0.0001,
+            "weight_decay": 0,
+            "amsgrad": true
+        }
+    },
+    "losses": [
+        {
+            "type": "ReconLoss",
+            "weight": 1,
+            "nickname": "loss_recon",
+            "args": {
+                "masked": false
+            }
+        },
+        {
+            "type": "ReconLoss",
+            "weight": 0,
+            "nickname": "loss_masked_recon",
+            "args": {
+                "masked": true
+            }
+        },
+        {
+            "type": "VGGLoss",
+            "weight": 1,
+            "nickname": "loss_vgg",
+            "args": {}
+        },
+        {
+            "type": "StyleLoss",
+            "weight": 10,
+            "nickname": "loss_style",
+            "args": {}
+        },
+        {
+            "type": "EdgeLoss",
+            "weight": 0,
+            "nickname": "loss_edge",
+            "args": {}
+        }
+    ],
+    "gan_losses": {
+        "loss_gan_spatial_weight": 0,
+        "loss_gan_temporal_weight": 0.5
+    },
+    "metrics": [
+        "L2_loss"
+    ],
+    "lr_scheduler": {
+        "type": "StepLR",
+        "args": {
+            "step_size": 1000,
+            "gamma": 0.97
+        }
+    },
+    "trainer": {
+        "epochs": 1500,
+        "save_dir": "saved/",
+        "save_freq": 5,
+        "verbosity": 2,
+        "monitor": "test0_p_dist",
+        "monitor_mode": "min",
+        "mask_only": true,
+        "pretrained_load_strict": false
+    },
+    "visualization": {
+        "log_step": 40,
+        "test_log_step": 400,
+        "tensorboardX": true,
+        "log_dir": "saved/runs"
+    },
+    "data_loader": {
+        "type": "MaskedFrameDataLoader",
+        "args": {
+            "root_videos_dir": "../dataset/FaceForensics_resize_128/train+val/original/",
+            "root_masks_dir": "../dataset/forensics_all_masks/train",
+            "root_outputs_dir": "../VOS_resized2",
+            "dataset_args": {
+                "type": "video",
+                "w": 128,
+                "h": 128,
+                "sample_length": 12,
+                "random_sample": true,
+                "random_sample_mask": true,
+                "mask_type": "from_start",
+                "do_augment": true,
+                "guidance": "landmarks"
+            },
+            "batch_size": 6,
+            "shuffle": true,
+            "validation_split": 0.0,
+            "num_workers": 4
+        }
+    },
+    "test_data_loader": [
+        {
+            "type": "MaskedFrameDataLoader",
+            "args": {
+                "name": "test_rand_curve",
+                "root_videos_dir": "../dataset/FaceForensics_resize_128/test/original/",
+                "root_masks_dir": "../dataset/forensics_all_masks/test_rand_curve",
+                "root_outputs_dir": "../VOS_resized2",
+                "dataset_args": {
+                    "type": "video",
+                    "w": 128,
+                    "h": 128,
+                    "sample_length": 32,
+                    "random_sample": false,
+                    "random_sample_mask": false,
+                    "mask_type": "from_start",
+                    "guidance": "landmarks"
+                },
+                "batch_size": 1,
+                "shuffle": false,
+                "validation_split": 0.0,
+                "num_workers": 4
+            }
+        },
+        {
+            "type": "MaskedFrameDataLoader",
+            "args": {
+                "name": "test_object_like",
+                "root_videos_dir": "../dataset/FaceForensics_resize_128/test/original/",
+                "root_masks_dir": "../dataset/forensics_all_masks/test_object_like",
+                "root_outputs_dir": "../VOS_resized2",
+                "dataset_args": {
+                    "type": "video",
+                    "w": 128,
+                    "h": 128,
+                    "sample_length": 32,
+                    "random_sample": false,
+                    "random_sample_mask": false,
+                    "mask_type": "from_start",
+                    "guidance": "landmarks"
+                },
+                "batch_size": 1,
+                "shuffle": false,
+                "validation_split": 0.0,
+                "num_workers": 4
+            }
+        },
+        {
+            "type": "MaskedFrameDataLoader",
+            "args": {
+                "name": "test_bbox",
+                "root_videos_dir": "../dataset/FaceForensics_resize_128/test/original/",
+                "root_masks_dir": "../dataset/forensics_all_masks/original",
+                "root_outputs_dir": "../VOS_resized2",
+                "dataset_args": {
+                    "type": "video",
+                    "w": 128,
+                    "h": 128,
+                    "sample_length": 32,
+                    "random_sample": false,
+                    "random_sample_mask": false,
+                    "mask_type": "from_start",
+                    "guidance": "landmarks"
+                },
+                "batch_size": 1,
+                "shuffle": false,
+                "validation_split": 0.0,
+                "num_workers": 4
+            }
+        }
+    ]
+}

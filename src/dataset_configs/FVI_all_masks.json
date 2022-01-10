@@ -16,7 +16,7 @@
                 "mask_type": "random",
                 "do_augment": true
             },
-            "batch_size": 5,
+            "batch_size": 2,
             "shuffle": true,
             "validation_split": 0.0,
             "num_workers": 4

@@ -1,0 +1,49 @@
+{
+    "name": "VOR_allMasks",
+    "data_loader": {
+        "type": "MaskedFrameDataLoader",
+        "args":{
+            "root_videos_dir": "../dataset/ours/cloudy2cloudless/Train/videos/",
+            "root_masks_dir": "../dataset/ours/cloudy2cloudless/Train/masks/",
+            "root_outputs_dir": "",
+            "dataset_args": {
+                "type": "video",
+                "w": 256,
+                "h": 256,
+                "sample_length": 12,
+                "random_sample": true,
+                "random_sample_mask": true,
+                "mask_type": "as_video",
+                "do_augment": true
+            },
+            "batch_size": 1,
+            "shuffle": true,
+            "validation_split": 0.0,
+            "num_workers": 4
+        }
+    },
+    "test_data_loader": [
+        {
+            "type": "MaskedFrameDataLoader",
+            "args":{
+                "name": "test_cloud",
+                "root_videos_dir": "../dataset/ours/cloudy2cloudless/Test/videos/",
+                "root_masks_dir": "../dataset/ours/cloudy2cloudless/Test/masks/",
+                "root_outputs_dir": "../VOS_resized2_ours",
+                "dataset_args": {
+                    "type": "video",
+                    "w": 256,
+                    "h": 256,
+                    "sample_length": 12,
+                    "random_sample": false,
+                    "random_sample_mask": false,
+                    "mask_type": "from_start"
+                },
+                "batch_size": 1,
+                "shuffle": false,
+                "validation_split": 0.0,
+                "num_workers": 4
+            }
+        }
+    ]
+}
