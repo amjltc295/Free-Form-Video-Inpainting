@@ -194,8 +194,8 @@ def evaluate_video_error(
         logger.info(f"Avg SSIM: {total_ssim / len(result_images)}")
         logger.info(
             f"Avg Perce. Dist.: {total_p_dist / len(result_images)}")
-    if total_error == 0:
-        raise IOError("Error = 0")
+    # if total_error == 0:
+    #     raise IOError("Error = 0")
     return (
         warping_error, total_error, total_psnr, total_ssim, total_p_dist,
         len(result_images)
