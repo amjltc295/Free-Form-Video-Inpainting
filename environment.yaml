@@ -19,7 +19,7 @@ dependencies:
   - hdf5=1.10.2=hc401514_2
   - icu=58.2=hfc679d8_0
   - imageio=2.4.1=py37_0
-  - jpeg=9c=h470a237_1
+  - jpeg
   - libgfortran=3.0.0=1
   - libglu=9.0.0=hfc679d8_0
   - libiconv=1.15=h470a237_3

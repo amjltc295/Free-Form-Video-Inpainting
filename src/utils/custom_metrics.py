@@ -7,8 +7,8 @@ from numpy.lib.function_base import average
 
 from skimage.measure import compare_psnr, compare_ssim, compare_mse
 
-resdir = './saved/C2C_model_clouds_train/0111_170820/test_outputs/epoch_140/test_cloud/'
-gtdir = '../dataset/clouds/inpaint/test/image/'
+resdir = './saved/C2C_model_clouds_train/0401_001536/test_outputs/epoch_140/test_cloud/'
+gtdir = '../dataset/clouds/inpaint_our_64/valid/image/'
 
 mse_vals = []
 psnr_vals = []

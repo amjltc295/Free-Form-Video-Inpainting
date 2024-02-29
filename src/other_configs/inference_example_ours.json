@@ -1,5 +1,5 @@
 {
-    "name": "inference_example",
+    "name": "clouds_test",
     "trainer": {
         "epochs": 1000,
         "save_dir": "saved/",
@@ -17,14 +17,14 @@
             "type": "MaskedFrameDataLoader",
             "args":{
                 "name": "test_cloud_removal",
-                "root_videos_dir": "../dataset/ours/cloudy2cloudless/Test/videos/009/",
-                "root_masks_dir": "../dataset/ours/cloudy2cloudless/Test/masks/009/",
+                "root_videos_dir": "../dataset/clouds/inpaint/test/image/",
+                "root_masks_dir": "../dataset/clouds/inpaint/test/mask/",
                 "root_outputs_dir": "../VOS_resized2",
                 "dataset_args": {
                     "type": "video",
-                    "w": 256,
-                    "h": 256,
-                    "sample_length": 12,
+                    "w": 64,
+                    "h": 64,
+                    "sample_length": 5,
                     "random_sample": false,
                     "random_sample_mask": false,
                     "mask_type": "as_video",
